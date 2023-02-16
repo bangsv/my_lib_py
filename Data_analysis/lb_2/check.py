@@ -30,8 +30,8 @@ def encode(root, s, huffman_code):
     if isLeaf(root):
         huffman_code[root.ch] = s if len(s) > 0 else '1'
  
-    encode(root.left, s + '0', huffman_code)
-    encode(root.right, s + '1', huffman_code)
+    encode(root.left, f'{s}0', huffman_code)
+    encode(root.right, f'{s}1', huffman_code)
  
  
 # Пройти по дереву Хаффмана и декодировать закодированную строку
@@ -93,9 +93,7 @@ def buildHuffmanTree(text):
     print('The original string is:', text)
  
     # распечатать закодированную строку
-    s = ''
-    for c in text:
-        s += huffmanCode.get(c)
+    s = ''.join(huffmanCode.get(c) for c in text)
  
     print('The encoded string is:', s)
     print('The decoded string is:', end=' ')
