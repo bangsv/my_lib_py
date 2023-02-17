@@ -2,7 +2,6 @@ import modul
 import requests, fake_useragent
 from bs4 import BeautifulSoup 
 from matplotlib import pyplot as plt
-from dsmltf import *
 import re 
 from collections import OrderedDict
 
@@ -10,6 +9,18 @@ from collections import OrderedDict
 user = fake_useragent.UserAgent().random 
 # Заголовки
 headers = {'User-Agent': user}
+
+# среднее значение
+def mean(x):
+    return sum(x)/len(x)
+
+# дисперсия
+def variance(x) :     
+    return mean(list(map(lambda t: t**2,x))) - mean(x)**2
+
+# стандартное отклонение
+def standard_deviation(x):
+    return sqrt(variance(x))
 
 # Парсинг городов 1.5.1
 def parsing(url):
